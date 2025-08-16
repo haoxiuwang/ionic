@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Base configuration (default for all domains) -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+            <!-- For debugging with user-added certificates -->
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Domain-specific configuration for cleartext (HTTP) -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">yourdomain.com</domain>
+        <domain includeSubdomains="true">api.yourdomain.com</domain>
+        <!-- Add other domains that need HTTP access -->
+    </domain-config>
+
+    <!-- For debugging with localhost -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain> <!-- Android emulator loopback -->
+    </domain-config>
+</network-security-config>
